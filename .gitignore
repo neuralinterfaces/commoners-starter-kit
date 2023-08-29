@@ -1,0 +1,8 @@
+.vscode
+node_modules
+dist
+build
+ios
+android
+*.log
+*.spec
