@@ -20,25 +20,29 @@ export default {
         bluetoothPlugin,
         serialPlugin,
 
-        // NOTE: These are not present on non-Electron builds because functions cannot be reliably parsed
         {
-            name: 'render-only',
-            render: () => console.log('RENDERED')
-        },
-        {
-            name: 'preload-only',
-            preload: () => console.log('PRELOADED')
-        },
-        {
-            name: 'main-only',
-            main: () => console.log('RUNNING ON MAIN')
-        },
-        {
-            name: 'all-builds',
-            electronOnly: false,
-            main: () => console.log('ELECTRON BUILD (main)'),
-            preload: () => console.log('ALL BUILDS (preload)'),
-            render: () => console.log('ALL BUILDS (render)')
+            name: 'selective-builds',
+            isSupported: {
+                desktop: {
+                    render: true,
+                    preload: true
+                },
+                mobile: {
+                    preload: true,
+                    render: false
+                },
+                web: {
+                    preload: false,
+                    render: true
+                }
+            },
+            main: () => {
+                console.log(`desktop build (main)`)
+            },
+            preload: () => {
+                console.log(COMMONERS.TARGET + ' build (preload)')
+            },
+            render: () => console.log(COMMONERS.TARGET + ' build (render)'),
 
         }
     ],
