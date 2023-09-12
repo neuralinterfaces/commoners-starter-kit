@@ -1,4 +1,5 @@
 // import * as autoUpdatePlugin from '../commoners/packages/plugins/autoupdate/index.js'
+
 import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
 import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
 
@@ -6,8 +7,10 @@ import * as serialPlugin from '../commoners/packages/plugins/devices/serial/inde
 // import * as bluetoothPlugin from '@commoners/bluetooth'
 // import * as serialPlugin from '@commoners/serial'
 
+// import { defineConfig } from 'commoners' // NOTE: COMMONERS dependencies are missing in local development...
+const defineConfig = (o) => o // NOTE: Trying to type this...
 
-export default {
+export default defineConfig({
     
     icon: {
         dark: './src/assets/commoners_dark.png',
@@ -62,11 +65,11 @@ export default {
                     mac: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/pyinstaller',
                 },
                 local: {
-                    src: './pyinstaller/commoners', // --onedir
+                    src: './dist/pyinstaller/commoners', // The location of the executable file when executed
                     extraResources: [ 
                         {
-                            "from": "./dist/pyinstaller/commoners",
-                            "to": "pyinstaller"
+                            "from": "./dist/pyinstaller/commoners", // Output Folder
+                            "to": "dist/pyinstaller" // Ensure the same structure as src is followed
                         }
                     ]
                 }
@@ -80,4 +83,4 @@ export default {
             }
         }
     }
-}
+})
