@@ -1,9 +1,8 @@
 {
   "name": "COMMONERS",
   "version": "0.0.0",
-  "description": "A GUI for managing COMMONERS applications.",
+  "description": "A template COMMONERS applications.",
   "main": "./dist/.commoners/main/index.js",
-  "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "private": true,
   "type": "module",
   "workspaces": [
