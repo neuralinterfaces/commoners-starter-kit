@@ -56,8 +56,8 @@ if (COMMONERS.services.node) {
 
 // --------- Python Service Test ---------
 if (COMMONERS.services.python) {
-
-  const pythonUrl = new URL(COMMONERS.services.python.url)
+ 
+  const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
   setTimeout(() => fetch(pythonUrl).then(res => res.json()).then(onData))
 }

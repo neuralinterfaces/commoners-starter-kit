@@ -1,11 +1,5 @@
-// import * as autoUpdatePlugin from '../commoners/packages/plugins/autoupdate/index.js'
-
-import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
-import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
-
-// import * as autoUpdatePlugin from '@commoners/autoupdate'
-// import * as bluetoothPlugin from '@commoners/bluetooth'
-// import * as serialPlugin from '@commoners/serial'
+import * as bluetoothPlugin from '@commoners/bluetooth'
+import * as serialPlugin from '@commoners/serial'
 
 // import { defineConfig } from 'commoners' // NOTE: COMMONERS dependencies are missing in local development...
 const defineConfig = (o) => o // NOTE: Trying to type this...

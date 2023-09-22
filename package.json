@@ -15,16 +15,15 @@
     "build": "commoners build"
   },
   "dependencies": {
-    "@capacitor-community/bluetooth-le": "^3.0.1",
-    "@commoners/autoupdate": "file:../commoners/packages/plugins/autoupdate",
-    "@commoners/bluetooth": "file:../commoners/packages/plugins/devices/ble",
-    "@commoners/serial": "file:../commoners/packages/plugins/devices/serial"
+    "@capacitor-community/bluetooth-le": "^3.0.1"
   },
   "devDependencies": {
     "@capacitor/assets": "^2.0.4",
     "@capacitor/cli": "^5.3.0",
     "@capacitor/core": "^5.3.0",
     "@capacitor/ios": "^5.3.0",
-    "commoners": "file:../commoners"
+    "@commoners/bluetooth": "0.0.0",
+    "@commoners/serial": "0.0.0",
+    "commoners": "0.0.5"
   }
 }
