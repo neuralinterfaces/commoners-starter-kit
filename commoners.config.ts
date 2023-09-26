@@ -64,6 +64,7 @@ export default defineConfig({
                 build: {
                     mac: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/pyinstaller',
                 },
+                remote: 'http://commoners.dev/python',
                 local: {
                     src: './dist/pyinstaller/commoners', // The location of the executable file when executed
                     extraResources: [ 
