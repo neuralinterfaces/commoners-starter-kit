@@ -10,7 +10,7 @@
     "src/**"
   ],
   "scripts": {
-    "start": "commoners start",
+    "start": "commoners --desktop",
     "dev": "commoners dev",
     "build": "commoners build"
   },
