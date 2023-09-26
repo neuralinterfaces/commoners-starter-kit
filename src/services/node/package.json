@@ -3,12 +3,15 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "start": "node server/index.js"
+        "start": "node server/index.js",
+        "build": "rollup ./index.js -o ../../../dist/services/node/index.js --format cjs && pkg ../../../dist/services/node/index.js --target node18 --out-path ../../../dist/services/node"
     },
     "dependencies": {
         "ws": "^8.12.0"
     },
     "devDependencies": {
-        "@types/ws": "^8.5.4"
+        "@types/ws": "^8.5.4",
+        "pkg": "^5.8.1",
+        "rollup": "^3.29.3"
     }
 }

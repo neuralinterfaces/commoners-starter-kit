@@ -51,26 +51,38 @@ export default defineConfig({
     ],
 
     services: {
+
+        // Example Node server (using pkg)
         node: {
             src: './src/services/node/index.js',
-            publish: {
-                remote: 'http://commoners.dev/node'
-            }
+            // publish: {
+            //     build: 'npm run build:node',
+            //     local: {
+            //         src: './dist/services/node/index',
+            //         extraResources: [ 
+            //             "./dist/services/node"
+            //         ]
+            //     }
+            // }
         },
+
+        // Example Python server (using pyinstaller)
         python: {
             src: './src/services/python/main.py',
             port: 3768,
             publish: {
-                build: {
-                    mac: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/pyinstaller',
-                },
                 remote: 'http://commoners.dev/python',
+                build: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
+                // local: {
+                //     src: './dist/services/python/commoners/commoners', // The location of the executable file when executed
+                //     extraResources: "./dist/services/python/commoners"
+                // },
                 local: {
-                    src: './dist/pyinstaller/commoners', // The location of the executable file when executed
+                    src: './dist/services/python/commoners', // The location of the executable file when executed
                     extraResources: [ 
                         {
-                            "from": "./dist/pyinstaller/commoners", // Output Folder
-                            "to": "dist/pyinstaller" // Ensure the same structure as src is followed
+                            "from": "./dist/services/python/commoners", // Output Folder
+                            "to": "dist/services/python" // Ensure the same structure as src is followed
                         }
                     ]
                 }
