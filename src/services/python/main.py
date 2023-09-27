@@ -1,9 +1,17 @@
 import sys
 import json
+
 import http.server
 import socketserver
+import socket
+
 from typing import Tuple
 from http import HTTPStatus
+
+class MyTCPServer(socketserver.TCPServer):
+    def server_bind(self):
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.socket.bind(self.server_address)
 
 class Handler(http.server.SimpleHTTPRequestHandler):
 
@@ -38,6 +46,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     PORT = int(sys.argv[1])
-    server = socketserver.TCPServer(("0.0.0.0", PORT), Handler)
+    server = MyTCPServer(("", PORT), Handler)
     print(f"Server started at http://localhost:{PORT}", flush=1)
     server.serve_forever()

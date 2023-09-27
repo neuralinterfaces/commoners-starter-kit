@@ -9,9 +9,16 @@
     "src/**"
   ],
   "scripts": {
-    "start": "commoners start",
-    "dev": "commoners dev",
-    "build": "commoners build"
+    "start": "commoners --desktop",
+    "dev": "commoners",
+    "services": "commoners --services",
+    "service:node": "commoners --service node",
+    "service:python": "commoners --service python",
+
+    "build": "commoners build",
+    "build:frontend": "commoners build --frontend",
+    "build:services": "commoners build --services",
+    "build:node": "cd src/services/node && npm run build"
   },
   "dependencies": {
     "@capacitor-community/bluetooth-le": "^3.0.1"

@@ -6,10 +6,7 @@ const defineConfig = (o) => o // NOTE: Trying to type this...
 
 export default defineConfig({
     
-    icon: {
-        dark: './src/assets/commoners_dark.png',
-        light: './src/assets/commoners_light.png'
-    }, 
+    icon: './src/assets/commoners.png', 
 
 
     plugins: [
@@ -45,27 +42,27 @@ export default defineConfig({
     ],
 
     services: {
+
+        // Example Node server (using pkg)
         node: {
             src: './src/services/node/index.js',
             publish: {
-                remote: 'http://commoners.dev/node'
+                build: 'npm run build:node',
+                local: {
+                    src: './dist/services/node/index'
+                }
             }
         },
+
+        // Example Python server (using pyinstaller)
         python: {
             src: './src/services/python/main.py',
             port: 3768,
             publish: {
-                build: {
-                    mac: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/pyinstaller',
-                },
+                remote: 'http://commoners.dev/python',
+                build: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
                 local: {
-                    src: './dist/pyinstaller/commoners', // The location of the executable file when executed
-                    extraResources: [ 
-                        {
-                            "from": "./dist/pyinstaller/commoners", // Output Folder
-                            "to": "dist/pyinstaller" // Ensure the same structure as src is followed
-                        }
-                    ]
+                    src: './dist/services/python/commoners/commoners'
                 }
             }
         },
