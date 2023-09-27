@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "commoners --desktop",
-    "dev": "commoners dev",
+    "dev": "commoners",
     "build": "commoners build",
     "build:node": "cd src/services/node && npm run build"
   },
