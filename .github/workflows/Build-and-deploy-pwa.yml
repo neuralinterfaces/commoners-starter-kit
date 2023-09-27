@@ -38,8 +38,11 @@ jobs:
       - name: Install dependencies
         run: npm install --ignore-scripts
 
+      - name: Install COMMONERS
+        run: npm install commoners
+
       - name: Build PWA
-        run: npm run build --outDir _site
+        run: npm run build -- --outDir _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
