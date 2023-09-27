@@ -7,7 +7,8 @@ import * as serialPlugin from '../commoners/packages/plugins/devices/serial/inde
 // import * as bluetoothPlugin from '@commoners/bluetooth'
 // import * as serialPlugin from '@commoners/serial'
 
-// import { defineConfig } from 'commoners' // NOTE: COMMONERS dependencies are missing in local development...
+// import { defineConfig } from '../commoners/packages/core/index' // NOTE: COMMONERS dependencies are missing in local development...
+// import { defineConfig } from 'commoners'
 const defineConfig = (o) => o // NOTE: Trying to type this...
 
 export default defineConfig({
