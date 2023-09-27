@@ -26,10 +26,10 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install package.json modules and their dependencies
-        run: npm install --ignore-scripts
+      - name: Install dependencies
+        run: npm install
 
       - name: Build and deploy on Windows
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
+        run: npm run build --publish
