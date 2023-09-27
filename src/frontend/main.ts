@@ -23,7 +23,6 @@ if (COMMONERS.services.remote && COMMONERS.services.remoteConfig) {
       .then(response => response.json())
       .then(json => display(`Remote Response Length: ${json.length}`))
 
-
       fetch(remoteAPIConfigured)
       .then(response => response.json())
       .then(json => display(`Remote (Config) Response Length: ${json.length}`))
@@ -79,26 +78,31 @@ async function requestSerialPort () {
   }
 }
 
-const testSerialConnection = document.getElementById('testSerialConnection')
-if (testSerialConnection) {
-  if ('serial' in COMMONERS.plugins.loaded) testSerialConnection.addEventListener('click', requestSerialPort)
-  else testSerialConnection.setAttribute('disabled', '')
-}
-// --------- Web Bluetooth Test ---------
-async function requestBluetoothDevice () {
+// NOTE: Not required when served with Vite—but required for Live Server
+globalThis.COMMONERS.ready.then(() => {
 
-  // Use the Capacitor API to support mobile
-  await BleClient.initialize();
-  const device = await BleClient.requestDevice();
+  const testSerialConnection = document.getElementById('testSerialConnection')
+  if (testSerialConnection) {
+    if ('serial' in COMMONERS.plugins.loaded) testSerialConnection.addEventListener('click', requestSerialPort)
+    else testSerialConnection.setAttribute('disabled', '')
+  }
+  // --------- Web Bluetooth Test ---------
+  async function requestBluetoothDevice () {
 
-  // const device = await navigator.bluetooth.requestDevice({ acceptAllDevices: true })
-  console.log(device)
-  display(`Connected to Bluetooth Device: ${device.name || `ID: ${device.id}`}`)
-}
+    // Use the Capacitor API to support mobile
+    await BleClient.initialize();
+    const device = await BleClient.requestDevice();
 
-const testBluetoothConnection = document.getElementById('testBluetoothConnection')
+    // const device = await navigator.bluetooth.requestDevice({ acceptAllDevices: true })
+    console.log(device)
+    display(`Connected to Bluetooth Device: ${device.name || `ID: ${device.id}`}`)
+  }
 
-if (testBluetoothConnection) {
-  if ('bluetooth' in COMMONERS.plugins.loaded) testBluetoothConnection.addEventListener('click', requestBluetoothDevice)
-  else testBluetoothConnection.setAttribute('disabled', '')
-}
+  const testBluetoothConnection = document.getElementById('testBluetoothConnection')
+
+  if (testBluetoothConnection) {
+    if ('bluetooth' in COMMONERS.plugins.loaded) testBluetoothConnection.addEventListener('click', requestBluetoothDevice)
+    else testBluetoothConnection.setAttribute('disabled', '')
+  }
+
+})

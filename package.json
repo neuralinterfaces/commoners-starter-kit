@@ -13,6 +13,8 @@
     "start": "commoners --desktop",
     "dev": "commoners",
     "build": "commoners build",
+    "build:frontend": "commoners build --frontend",
+    "build:services": "commoners build --backend",
     "build:node": "cd src/services/node && npm run build"
   },
   "dependencies": {
