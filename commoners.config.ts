@@ -1,8 +1,8 @@
-import * as bluetoothPlugin from '@commoners/bluetooth'
-import * as serialPlugin from '@commoners/serial'
 
+import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
+import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
 // import { defineConfig } from '../commoners/packages/core/index' // NOTE: COMMONERS dependencies are missing in local development...
-// import { defineConfig } from 'commoners'
+
 const defineConfig = (o) => o // NOTE: Trying to type this...
 
 export default defineConfig({
