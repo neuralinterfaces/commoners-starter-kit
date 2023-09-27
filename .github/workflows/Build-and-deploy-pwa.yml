@@ -39,7 +39,7 @@ jobs:
         run: npm install
          
       - name: Build PWA
-        run: npm run build -- --frontend --outDir _site
+        run: npm run build -- --pwa --frontend --outDir _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
