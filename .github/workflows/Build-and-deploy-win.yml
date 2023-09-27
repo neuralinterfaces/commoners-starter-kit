@@ -1,4 +1,4 @@
-name: Build and Deploy (Windows)
+name: Build and Deploy — Windows
 run-name: ${{ github.actor }} is building a Windows release
 
 on:
