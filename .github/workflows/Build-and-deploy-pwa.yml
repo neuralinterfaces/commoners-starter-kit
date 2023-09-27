@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy — PWA
 run-name: ${{ github.actor }} is building a PWA release
 
 on:
