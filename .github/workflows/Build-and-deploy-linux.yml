@@ -1,4 +1,4 @@
-name: Build-and-deploy-linux
+name: Build and Deploy (Linux)
 run-name: ${{ github.actor }} is building a Linux release
 
 on:
