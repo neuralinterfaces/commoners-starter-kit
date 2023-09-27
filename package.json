@@ -21,7 +21,7 @@
     "build:node": "cd src/services/node && npm run build"
   },
   "dependencies": {
-    "@capacitor-community/bluetooth-le": "^3.0.1"
+    "@capacitor-community/bluetooth-le": "^3.0.1",
   },
   "devDependencies": {
     "@capacitor/assets": "^2.0.4",
