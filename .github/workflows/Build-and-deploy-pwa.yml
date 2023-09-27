@@ -23,17 +23,23 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
       - name: Build PWA
-        run: npm run build -- --pwa --outDir _site
+        run: npm run build --pwa --outDir _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
