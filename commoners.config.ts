@@ -12,10 +12,7 @@ const defineConfig = (o) => o // NOTE: Trying to type this...
 
 export default defineConfig({
     
-    icon: {
-        dark: './src/assets/commoners_dark.png',
-        light: './src/assets/commoners_light.png'
-    }, 
+    icon: './src/assets/commoners.png', 
 
 
     plugins: [
@@ -55,15 +52,12 @@ export default defineConfig({
         // Example Node server (using pkg)
         node: {
             src: './src/services/node/index.js',
-            // publish: {
-            //     build: 'npm run build:node',
-            //     local: {
-            //         src: './dist/services/node/index',
-            //         extraResources: [ 
-            //             "./dist/services/node"
-            //         ]
-            //     }
-            // }
+            publish: {
+                build: 'npm run build:node',
+                local: {
+                    src: './dist/services/node/index'
+                }
+            }
         },
 
         // Example Python server (using pyinstaller)
@@ -73,18 +67,8 @@ export default defineConfig({
             publish: {
                 remote: 'http://commoners.dev/python',
                 build: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
-                // local: {
-                //     src: './dist/services/python/commoners/commoners', // The location of the executable file when executed
-                //     extraResources: "./dist/services/python/commoners"
-                // },
                 local: {
-                    src: './dist/services/python/commoners', // The location of the executable file when executed
-                    extraResources: [ 
-                        {
-                            "from": "./dist/services/python/commoners", // Output Folder
-                            "to": "dist/services/python" // Ensure the same structure as src is followed
-                        }
-                    ]
+                    src: './dist/services/python/commoners/commoners'
                 }
             }
         },
