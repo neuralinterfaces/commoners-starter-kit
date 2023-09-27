@@ -1,7 +1,9 @@
 
 import * as bluetoothPlugin from '@commoners/bluetooth'
 import * as serialPlugin from '@commoners/serial'
-import { defineConfig } from 'commoners' // NOTE: COMMONERS dependencies are missing in local development...
+// import { defineConfig } from 'commoners' // NOTE: COMMONERS dependencies are missing in local development...
+
+const defineConfig = (o) => o 
 
 export default defineConfig({
     
