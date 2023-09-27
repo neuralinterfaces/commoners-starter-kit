@@ -37,7 +37,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        
+
+      - name: Install COMMONERS
+        run: npm install commoners
+         
       - name: Build PWA
         run: npm run build -- --frontend --outDir _site
 
