@@ -1,4 +1,4 @@
-name: Build and Deploy (Mac)
+name: Build and Deploy — Mac
 run-name: ${{ github.actor }} is building a Mac release
 
 on:
