@@ -30,6 +30,6 @@
     "@capacitor/ios": "^5.3.0",
     "@commoners/bluetooth": "0.0.0",
     "@commoners/serial": "0.0.0",
-    "commoners": "0.0.7"
+    "commoners": "0.0.8"
   }
 }
