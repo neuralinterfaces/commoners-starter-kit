@@ -6,13 +6,13 @@ import * as serialPlugin from '@commoners/serial'
 // // ------------- DEVELOPMENT -------------
 // import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
 // import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
-// import { defineConfig } from '../commoners/packages/core/index' // NOTE: COMMONERS dependencies are missing in local development...
+// // import { defineConfig } from '../commoners/packages/core/index' // NOTE: COMMONERS dependencies are missing in local development...
 
-// ----------- Package.json Dependencies -----------
-// "@commoners/autoupdate": "file:../commoners/packages/plugins/autoupdate",
-// "@commoners/bluetooth": "file:../commoners/packages/plugins/devices/ble",
-// "@commoners/serial": "file:../commoners/packages/plugins/devices/serial",
-// "commoners":  "file:../commoners"
+// // ----------- Package.json Dependencies -----------
+// // "@commoners/autoupdate": "file:../commoners/packages/plugins/autoupdate",
+// // "@commoners/bluetooth": "file:../commoners/packages/plugins/devices/ble",
+// // "@commoners/serial": "file:../commoners/packages/plugins/devices/serial",
+// // "commoners":  "file:../commoners"
 
 
 const defineConfig = (o) => o 
@@ -61,9 +61,8 @@ export default defineConfig({
             src: './src/services/node/index.js',
             publish: {
                 build: 'npm run build:node',
-                local: {
-                    src: './dist/services/node/index'
-                }
+                remote: 'https://node-production-aa81.up.railway.app/',
+                local: './dist/services/node/index'
             }
         },
 
@@ -72,19 +71,15 @@ export default defineConfig({
             src: './src/services/python/main.py',
             port: 3768,
             publish: {
-                remote: 'http://commoners.dev/python',
                 build: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
-                local: {
-                    src: './dist/services/python/commoners/commoners'
-                }
+                remote: 'https://python-production-4f11.up.railway.app',
+                local: './dist/services/python/commoners/commoners'
             }
         },
         remote: 'https://jsonplaceholder.typicode.com',
         remoteConfig: {
-            url: 'http://localhost:3768', // Call the python server in development
-            publish: {
-                url: 'https://jsonplaceholder.typicode.com'
-            }
+            src: 'http://localhost:3768', // Call the python server in development
+            publish: 'https://jsonplaceholder.typicode.com'
         }
     }
 })
