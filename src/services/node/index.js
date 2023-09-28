@@ -1,10 +1,23 @@
+import { readFileSync } from 'node:fs';
 import 'node:os' // For some reason, this import is required to resolve WebSocketServer
 import { WebSocketServer } from 'ws';
+import { createServer } from 'node:https';
+
+const cfg = {
+  ssl: false,
+  port: process.env.PORT || 3000,
+  ssl_key: './ssl.key',
+  ssl_cert: './ssl.crt'
+};
 
 const port = process.env.PORT || 3000
-const wss = new WebSocketServer({ port });
 
-console.log(`Server running at http://localhost:${port}/`)
+const server = cfg.ssl ? createServer({
+  cert: readFileSync('/path/to/cert.pem'),
+  key: readFileSync('/path/to/key.pem')
+}) : null;
+
+const wss = server ? new WebSocketServer({ server }).listen(cfg.port) : new WebSocketServer({ port: cfg.port });
 
 wss.on('connection', function connection(ws) {
 
@@ -24,3 +37,5 @@ wss.on('connection', function connection(ws) {
 
   });
 });
+
+console.log(`Server running at http://localhost:${port}/`)
