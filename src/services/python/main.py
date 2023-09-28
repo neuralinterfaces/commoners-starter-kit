@@ -1,4 +1,4 @@
-import sys
+import os
 import json
 
 import http.server
@@ -45,7 +45,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    PORT = int(sys.argv[1])
+    PORT = int(os.getenv('PORT')) or 8080
     server = MyTCPServer(("", PORT), Handler)
     print(f"Server started at http://localhost:{PORT}", flush=1)
     server.serve_forever()
