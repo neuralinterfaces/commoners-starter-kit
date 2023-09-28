@@ -14,5 +14,5 @@ Related services will be hosted using [Railway](https://railway.app/), where fol
 2. For each service, generate a domain in the Networking tab. Paste this into your `commoners.config.ts` file
 
 ## Current Issues
-1. Cannot connect to Railway Node server because our WebSocket connection is not secure + port forwarding doesn't work with this protocol
-2. The Railway Python server is non-responsive...
+1. Cannot connect to Railway Node server because our WebSocket connection is not secure (http is fine...)
+2. Selecting [build providers](https://docs.railway.app/deploy/builds#build-providers) is an premium feature, and our app auto-registers as Node only. So the Railway Python server fails with `Error: spawn python ENOENT` because there is no Python installed.
