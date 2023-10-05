@@ -59,11 +59,7 @@ export default defineConfig({
         // Example Node server (using pkg)
         node: {
             src: './src/services/node/index.js',
-            publish: {
-                build: 'npm run build:node',
-                remote: 'https://node-production-aa81.up.railway.app/',
-                local: './dist/services/node/index'
-            }
+            publish: 'https://node-production-aa81.up.railway.app/'
         },
 
         // Example Python server (using pyinstaller)
