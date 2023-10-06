@@ -3,11 +3,12 @@ import { BleClient } from '@capacitor-community/bluetooth-le';
 const sidecarMessage = document.getElementById('sidecar-msg') as HTMLElement
 
 const display = (message: string) => {
-  sidecarMessage.innerText += `${message}\n`
+  sidecarMessage.innerHTML += `<li>${message}</li>`
 }
 
 const onData = (data: any) => {
   if (data.error) return console.error(data.error)
+
   display(`${data.command} - ${data.payload}`)
 }
 
@@ -48,7 +49,6 @@ if (COMMONERS.services.node) {
   }
 
   ws.onopen = () => {
-    send({ command: 'test', payload: true })
     send({ command: 'platform' })
   }
 }
@@ -58,7 +58,9 @@ if (COMMONERS.services.python) {
  
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
-  setTimeout(() => fetch(pythonUrl).then(res => res.json()).then(onData))
+  setTimeout(() => fetch(pythonUrl).then(res => res.json()).then((data => {
+    onData({ command: 'python (version)', payload: data.version })
+  })))
 }
 
 

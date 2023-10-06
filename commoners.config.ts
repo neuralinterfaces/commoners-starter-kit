@@ -67,9 +67,9 @@ export default defineConfig({
             src: './src/services/python/main.py',
             port: 3768,
             publish: {
-                build: 'python -m PyInstaller --name commoners --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
+                build: 'python -m PyInstaller --name solidarity --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
                 remote: 'https://python-production-4f11.up.railway.app',
-                local: './dist/services/python/commoners/commoners'
+                local: './dist/services/python/solidarity/solidarity'
             }
         },
         remote: 'https://jsonplaceholder.typicode.com',
