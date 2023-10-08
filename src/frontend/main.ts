@@ -1,11 +1,12 @@
 import { BleClient } from '@capacitor-community/bluetooth-le';
 
-import SwaggerClient from 'swagger-client'
-
 const list = document.querySelector('ul')
 
 async function createClient(url: string | URL) {
-  const client = await new SwaggerClient(typeof url === 'string' ? url : url.href)
+
+  const client = await new SwaggerClient(typeof url === 'string' ? url : url.href).catch((e: any) => {
+    throw new Error(`Failed to create client for ${url}: ${e.message}`)
+  })
 
   const { title, description } = client.spec.info
   const section = document.createElement('section')
@@ -127,9 +128,8 @@ async function requestSerialPort () {
   }
 }
 
-// NOTE: Not required when served with Vite—but required for Live Server
-globalThis.COMMONERS.ready.then(() => {
 
+COMMONERS.ready.then(() => {
   const testSerialConnection = document.getElementById('testSerialConnection')
   if (testSerialConnection) {
     if ('serial' in COMMONERS.plugins.loaded) testSerialConnection.addEventListener('click', requestSerialPort)
