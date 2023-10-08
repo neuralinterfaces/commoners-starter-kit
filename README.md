@@ -16,7 +16,9 @@ Related services will be hosted using [Railway](https://railway.app/), where fol
 ## Running the Solidarity Demo
 To run the Python server, you'll need to create a `conda` environment from the `environment.yml` file.
 
-After this, activate the `solidarity` environment and run `npm run dev` to start the development server on your default browser or `npm start` to begin developing for desktop!
+After this, activate the `solidarity` environment (`conda activate solidarity`).
+
+You can then run `npm run dev` to start the development server on your default browser—or `npm start` to begin developing for desktop!
 
 ## Current Issues
 ### Railway Service Deployment

@@ -27,7 +27,8 @@ wss.on('connection', function connection(ws) {
     
     const response = { id, command, response: true }
     if (command === 'platform') response.payload = process.platform
-    
+    else if (command === 'version') response.payload = process.version
+
     else {
       response.error = `Unknown command: ${command}`
       delete response.payload

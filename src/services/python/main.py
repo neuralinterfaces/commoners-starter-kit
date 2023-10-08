@@ -1,17 +1,22 @@
 import os
 import json
 import sys
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/')
+@app.route('/.commoners')
+@cross_origin()
+def openapi():
+    return send_file('openapi.json')
+
+@app.route('/version')
 @cross_origin()
 def home():
-    return jsonify({ "version": sys.version })
+    return jsonify(sys.version)
 
 @app.route('/users')
 @cross_origin()
@@ -21,7 +26,8 @@ def users():
 @app.route('/echo', methods=['POST'])
 @cross_origin()
 def post():
-    return jsonify(json.loads(request.data))
+    data = json.loads(request.data) if request.data else {}
+    return jsonify(data)
 
 if __name__ == "__main__":
     env_port = os.getenv('PORT')

@@ -20,12 +20,16 @@
   <body>
     <div class="container">
       <h1>Solidarity ✊</h1>
-      <button id="testSerialConnection">Test Serial Connection</button>
-      <button id="testBluetoothConnection">Test Bluetooth Connection</button>
+      <main>
+        <ul id="commands">
+          <li>Connect to Serial Device <button id="testSerialConnection">Run</button></li>
+          <li>Connect to Bluetooth Device <button id="testBluetoothConnection">Run</button></li>
+        </ul>
 
-      <div id="console">
-        <ul id="sidecar-msg"></ul>
-      </div>
+        <div id="console">
+          <ul id="messages"></ul>
+        </div>
+      </main>
     </div>
   </body>
 </html>

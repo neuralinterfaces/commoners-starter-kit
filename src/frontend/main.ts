@@ -1,32 +1,71 @@
 import { BleClient } from '@capacitor-community/bluetooth-le';
 
-const sidecarMessage = document.getElementById('sidecar-msg') as HTMLElement
+import SwaggerClient from 'swagger-client'
+
+const list = document.querySelector('ul')
+
+async function createClient(url: string | URL) {
+  const client = await new SwaggerClient(typeof url === 'string' ? url : url.href)
+
+  const { title, description } = client.spec.info
+  const section = document.createElement('section')
+  section.innerHTML = `<h2>${title}</h2><small>${description}</small>`
+  list.appendChild(section)
+
+  // Populate list of available methods
+  Object.keys(client.spec.paths).forEach((path: any) => {
+    const info = client.spec.paths[path]
+
+    const keys = Object.keys(info)
+    keys.forEach((method: any) => {
+      const { operationId, tags, description } = info[method]
+      const li = document.createElement('li') 
+      const container = document.createElement('div')     
+      container.innerHTML = `${operationId ?? path}${keys.length > 1 ? ` (${method})` : ''}<br>${description ? `<small>${description}</small><br/>` : ''} <div class="tags">${tags.map(tag => `<div>${tag}</div>`)}</div>`
+
+      const button = document.createElement('button')
+      button.innerText = 'Run'
+      button.onclick = async () => {
+          const result = await client.apis[tags[0]][operationId]()
+          onData({ source: title, command: operationId, payload: result.body })
+      }
+
+      li.append(container, button)
+      list.appendChild(li)
+    })
+  })
+
+  return client
+}
+
+const messages = document.getElementById('messages') as HTMLElement
 
 const display = (message: string) => {
-  sidecarMessage.innerHTML += `<li>${message}</li>`
+  messages.innerHTML += `<li>${message}</li>`
+  messages.scrollTop = messages.scrollHeight;
 }
 
 const onData = (data: any) => {
   if (data.error) return console.error(data.error)
 
-  display(`${data.command} - ${data.payload}`)
+  display(`${data.source ? `${data.source} (${data.command})` : data.command} - ${JSON.stringify(data.payload)}`)
 }
 
-// Remote API Tests
-if (COMMONERS.services.remote && COMMONERS.services.remoteConfig) {
+// Remote API Tests (Basic Fetch Commands)
+if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
   try {
     const remoteAPI = new URL('/users', COMMONERS.services.remote.url)
-    const remoteAPIConfigured = new URL('/users', COMMONERS.services.remoteConfig.url)
+    const dynamicAPI = new URL('/users', COMMONERS.services.dynamic.url)
 
     setTimeout(() => {
 
       fetch(remoteAPI)
       .then(response => response.json())
-      .then(json => display(`Remote Response Length: ${json.length}`))
+      .then(json => onData({source: 'Remote', command: 'users', payload: json.length}))
 
-      fetch(remoteAPIConfigured)
+      fetch(dynamicAPI)
       .then(response => response.json())
-      .then(json => display(`Remote (Config) Response Length: ${json.length}`))
+      .then(json => onData({source: `Dynamic = ${COMMONERS.MODE[0].toUpperCase() + COMMONERS.MODE.slice(1)}`, command: 'users', payload: json.length}))
     })
   } catch (e) {
     console.error('Remote URLs not configured')
@@ -36,13 +75,16 @@ if (COMMONERS.services.remote && COMMONERS.services.remoteConfig) {
 
 
 
-// --------- Node Service Test ---------
+// --------- Node Service Test (WebSockets) ---------
 if (COMMONERS.services.node) {
   const url = new URL(COMMONERS.services.node.url)
 
   const ws = new WebSocket(`ws://${url.host}`)
 
-  ws.onmessage = (o) => onData(JSON.parse(o.data))
+  ws.onmessage = (o) => {
+    const data = JSON.parse(o.data)
+    onData({source: 'Node', ...data})
+  }
 
   let send = (o: any) => {
     ws.send(JSON.stringify(o))
@@ -50,17 +92,22 @@ if (COMMONERS.services.node) {
 
   ws.onopen = () => {
     send({ command: 'platform' })
+    send({ command: 'version' })
   }
 }
 
-// --------- Python Service Test ---------
+
+// --------- Python Service Test (OpenAPI) ---------
 if (COMMONERS.services.python) {
  
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
-  setTimeout(() => fetch(pythonUrl).then(res => res.json()).then((data => {
-    onData({ command: 'python (version)', payload: data.version })
-  })))
+  setTimeout(async () => {
+      const client = await createClient(new URL('.commoners', pythonUrl))
+      client.apis.version.getPythonVersion().then(res => {
+        onData({ source: 'Python', command: 'version', payload: res.body })
+      });
+  })
 }
 
 

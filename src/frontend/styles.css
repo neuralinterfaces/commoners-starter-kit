@@ -22,11 +22,18 @@
   pointer-events: none;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
 #console {
-  border: 1px solid gainsboro;
   border-radius: 10px;
-  margin-top: 50px;
   overflow: hidden;
+  height: 100%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 #console::before {
@@ -34,11 +41,21 @@
   font-weight: bold;
   font-size: medium;
   display: block;
-  padding: 10px;
+  padding: 10px 15px;
   width: 100%;
-  border-bottom: 1px solid gainsboro;
-  background: black;
   color: white;
+  background: black;
+}
+
+#console li {
+  padding: 10px 20px;
+  border-bottom: 1px solid gainsboro;
+}
+
+#messages {
+  max-height: 300px;
+  font-size: 90%;
+  overflow-y: auto;
 }
 
 .container {
@@ -93,6 +110,57 @@ button {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#commands {
+  overflow-y: auto;
+}
+
+#commands h2 {
+  margin-bottom: 0;
+}
+
+#commands small {
+  font-size: 0.8em;
+  color: gray;
+  font-weight: 500;
+}
+
+#commands .tags {
+  font-size: 0.8em;
+}
+
+#commands li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 90%;
+  gap: 15px;
+  margin: 0;
+  padding: 10px 0px;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+  user-select: none;
+  padding-top: 10px;
+}
+
+.tags > * {
+  padding: 0px 10px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+}
+
+button { 
+  text-align: left;
+}
+
 button {
   cursor: pointer;
 }
@@ -108,10 +176,6 @@ button:active {
 input,
 button {
   outline: none;
-}
-
-#greet-input {
-  margin-right: 5px;
 }
 
 @media (prefers-color-scheme: dark) {
