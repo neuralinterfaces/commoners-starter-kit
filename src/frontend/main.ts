@@ -88,20 +88,24 @@ if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
 if (COMMONERS.services.node) {
   const url = new URL(COMMONERS.services.node.url)
 
-  const ws = new WebSocket(`ws://${url.host}`)
+  try {
+    const ws = new WebSocket(`ws://${url.host}`)
 
-  ws.onmessage = (o) => {
-    const data = JSON.parse(o.data)
-    onData({source: 'Node', ...data})
-  }
+    ws.onmessage = (o) => {
+      const data = JSON.parse(o.data)
+      onData({source: 'Node', ...data})
+    }
 
-  let send = (o: any) => {
-    ws.send(JSON.stringify(o))
-  }
+    let send = (o: any) => {
+      ws.send(JSON.stringify(o))
+    }
 
-  ws.onopen = () => {
-    send({ command: 'platform' })
-    send({ command: 'version' })
+    ws.onopen = () => {
+      send({ command: 'platform' })
+      send({ command: 'version' })
+    }
+  } catch (e) {
+    console.error('Failed to connect to Node.js server', e)
   }
 }
 
@@ -112,9 +116,11 @@ if (COMMONERS.services.python) {
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
   setTimeout(async () => {
-      fetch(new URL('version', pythonUrl)).then(res => res.json()).then(payload => {
-        onData({ source: 'Python', command: 'version', payload })
-      });
+    try {
+        fetch(new URL('version', pythonUrl)).then(res => res.json()).then(payload => onData({ source: 'Python', command: 'version', payload }));
+    } catch (e) {
+      console.error('Failed to connect to Python server', e)
+    }
   })
 }
 
