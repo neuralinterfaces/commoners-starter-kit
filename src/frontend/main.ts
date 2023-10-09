@@ -62,7 +62,6 @@ const onData = (data: any) => {
 
 // Remote API Tests (Basic Fetch Commands)
 if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
-  try {
     const remoteAPI = new URL('/users', COMMONERS.services.remote.url)
     const dynamicAPI = new URL('/users', COMMONERS.services.dynamic.url)
 
@@ -71,14 +70,14 @@ if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
       fetch(remoteAPI)
       .then(response => response.json())
       .then(json => onData({source: 'Remote', command: 'users', payload: json.length}))
+      .catch(e => console.error('Failed to request from remote server', e))
 
       fetch(dynamicAPI)
       .then(response => response.json())
       .then(json => onData({source: `Dynamic = ${COMMONERS.MODE[0].toUpperCase() + COMMONERS.MODE.slice(1)}`, command: 'users', payload: json.length}))
+      .catch(e => console.error('Failed to request from dynamic server', e))
     })
-  } catch (e) {
-    console.error('Remote URLs not configured')
-  }
+
 } 
 
 
@@ -116,11 +115,10 @@ if (COMMONERS.services.python) {
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
   setTimeout(async () => {
-    try {
-        fetch(new URL('version', pythonUrl)).then(res => res.json()).then(payload => onData({ source: 'Python', command: 'version', payload }));
-    } catch (e) {
-      console.error('Failed to connect to Python server', e)
-    }
+      fetch(new URL('version', pythonUrl))
+      .then(res => res.json())
+      .then(payload => onData({ source: 'Python', command: 'version', payload }))
+      .catch(e => console.error('Failed to request from Python server', e))
   })
 }
 
