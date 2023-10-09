@@ -20,6 +20,8 @@ After this, activate the `solidarity` environment (`conda activate solidarity`).
 
 You can then run `npm run dev` to start the development server on your default browser—or `npm start` to begin developing for desktop!
 
+To populate the UI with an interactive UI for the `python` service (documented with the OpenAPI specification), run `npm run share` (**desktop** only).
+
 ## Current Issues
 ### Railway Service Deployment
 1. Cannot connect to Railway Node server because our WebSocket connection is not secure (http is fine...)

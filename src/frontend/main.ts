@@ -112,9 +112,8 @@ if (COMMONERS.services.python) {
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
   setTimeout(async () => {
-      const client = await createClient(pythonUrl)
-      client.apis.version.getPythonVersion().then(res => {
-        onData({ source: 'Python', command: 'version', payload: res.body })
+      fetch(new URL('version', pythonUrl)).then(res => res.json()).then(payload => {
+        onData({ source: 'Python', command: 'version', payload })
       });
   })
 }
