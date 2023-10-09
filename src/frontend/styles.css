@@ -35,6 +35,7 @@ main > * {
 }
 
 #console {
+  width: min-content;
   border-radius: 10px;
   overflow: hidden;
   height: 100%;
@@ -52,7 +53,9 @@ main > * {
   background: black;
 }
 
+/* Don't break whitespace characters */
 #console li {
+  white-space: pre;
   padding: 10px 20px;
   border-bottom: 1px solid gainsboro;
 }

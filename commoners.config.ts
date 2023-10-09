@@ -24,6 +24,12 @@ export default defineConfig({
     
     icon: './src/assets/commoners.png', 
 
+    electron: {
+        window: {
+            width: 1000 // Adjust default width
+        }
+    },
+
 
     plugins: [
         // autoUpdatePlugin,

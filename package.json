@@ -40,6 +40,6 @@
     "@commoners/bluetooth": "0.0.0",
     "@commoners/serial": "0.0.0",
     "@commoners/local-services": "0.0.0",
-    "commoners":  "0.0.18"
+    "commoners":  "0.0.20"
   }
 }
