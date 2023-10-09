@@ -27,6 +27,11 @@ main {
   justify-content: center;
   gap: 50px;
   flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+
+#sidebar {
+  flex-grow: 1
 }
 
 #console {
@@ -120,7 +125,7 @@ ul {
   overflow-y: auto;
 }
 
-#commands h2 {
+#commands h3 {
   margin-bottom: 0;
 }
 

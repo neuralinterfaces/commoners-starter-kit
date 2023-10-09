@@ -1,17 +1,25 @@
 import { BleClient } from '@capacitor-community/bluetooth-le';
 
-const list = document.querySelector('ul')
 
-async function createClient(url: string | URL) {
+const list = document.querySelector('#commands') as HTMLUListElement
 
+async function createClient(url: string | URL, id = '') {
+
+  url = new URL('.commoners', url)
+  
   const client = await new SwaggerClient(typeof url === 'string' ? url : url.href).catch((e: any) => {
     throw new Error(`Failed to create client for ${url}: ${e.message}`)
   })
 
+  const nestedList = document.createElement('ul')
+  nestedList.id = id
+  list.appendChild(nestedList)
+
+
   const { title, description } = client.spec.info
   const section = document.createElement('section')
-  section.innerHTML = `<h2>${title}</h2><small>${description}</small>`
-  list.appendChild(section)
+  section.innerHTML = `<h3>${title}</h3><small>${description}</small>`
+  nestedList.append(section)
 
   // Populate list of available methods
   Object.keys(client.spec.paths).forEach((path: any) => {
@@ -32,7 +40,7 @@ async function createClient(url: string | URL) {
       }
 
       li.append(container, button)
-      list.appendChild(li)
+      nestedList.appendChild(li)
     })
   })
 
@@ -104,7 +112,7 @@ if (COMMONERS.services.python) {
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
   setTimeout(async () => {
-      const client = await createClient(new URL('.commoners', pythonUrl))
+      const client = await createClient(pythonUrl)
       client.apis.version.getPythonVersion().then(res => {
         onData({ source: 'Python', command: 'version', payload: res.body })
       });
@@ -129,10 +137,33 @@ async function requestSerialPort () {
 }
 
 
-COMMONERS.ready.then(() => {
+COMMONERS.ready.then(plugins => {
+
+  if ('local-services' in plugins) {
+
+    const localServices = plugins['local-services']
+    const ids: { [x:string]: string }  = {}
+
+    localServices.onFound((url) => {
+      if (ids[url]) return
+      const id = ids[url] = Math.random().toString(36).substring(7)
+      createClient(url, id)
+    })
+
+    localServices.onClosed((url) => {
+      const el = document.getElementById(ids[url])
+      if (el) el.remove()
+      delete ids[url]
+    })
+
+    localServices.get()
+
+  }
+
+
   const testSerialConnection = document.getElementById('testSerialConnection')
   if (testSerialConnection) {
-    if ('serial' in COMMONERS.plugins.loaded) testSerialConnection.addEventListener('click', requestSerialPort)
+    if ('serial' in plugins) testSerialConnection.addEventListener('click', requestSerialPort)
     else testSerialConnection.setAttribute('disabled', '')
   }
   // --------- Web Bluetooth Test ---------
@@ -150,7 +181,7 @@ COMMONERS.ready.then(() => {
   const testBluetoothConnection = document.getElementById('testBluetoothConnection')
 
   if (testBluetoothConnection) {
-    if ('bluetooth' in COMMONERS.plugins.loaded) testBluetoothConnection.addEventListener('click', requestBluetoothDevice)
+    if ('bluetooth' in plugins) testBluetoothConnection.addEventListener('click', requestBluetoothDevice)
     else testBluetoothConnection.setAttribute('disabled', '')
   }
 
