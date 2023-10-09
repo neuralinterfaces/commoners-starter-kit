@@ -22,6 +22,12 @@ jobs:
         with:
           python-version: "3.10"
 
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: solidarity
+          environment-file: environment.yml
+          auto-activate-base: false
+          
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
