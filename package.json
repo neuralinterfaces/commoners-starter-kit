@@ -5,6 +5,10 @@
   "main": "./dist/.commoners/main/index.js",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garrettmflynn/commoners-starter-kit.git"
+  },
   "workspaces": [
     "src/**"
   ],

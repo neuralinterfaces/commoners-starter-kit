@@ -15,7 +15,8 @@ def openapi():
 
 @app.route('/version')
 @cross_origin()
-def home():
+def version():
+    print(f'Getting version: {sys.version}', flush=True) # Required to show in logs
     return jsonify(sys.version)
 
 @app.route('/users')
