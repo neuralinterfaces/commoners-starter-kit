@@ -11,6 +11,7 @@ const cfg = {
 };
 
 const port = process.env.PORT || 3000
+const host = process.env.HOST || '127.0.0.1'
 
 const server = cfg.ssl ? createServer({
   cert: readFileSync('/path/to/cert.pem'),
@@ -39,4 +40,4 @@ wss.on('connection', function connection(ws) {
   });
 });
 
-console.log(`Server running at http://localhost:${port}/`)
+console.log(`Server running at http://${host}:${port}/`)

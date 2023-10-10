@@ -22,7 +22,7 @@ const defineConfig = (o) => o
 
 export default defineConfig({
     
-    icon: './src/assets/commoners.png', 
+    // icon: './src/assets/logo.png', 
 
     electron: {
         window: {
@@ -36,8 +36,8 @@ export default defineConfig({
         bluetoothPlugin,
         serialPlugin,
         localServicesPlugin(null,  (ip, env) => {
-            const isLocalIP = process.env.LOCAL_IP === ip
-            const hasAuthString = process.env.COMMONERS_AUTH_STRING === env.COMMONERS_AUTH_STRING
+            const isLocalIP = ip === 'localhost'
+            const hasAuthString = process.env.SHARE_SECRET_KEY === env.SHARE_SECRET_KEY
             return hasAuthString || isLocalIP
         }),
 
