@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Kanit', Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -111,12 +111,18 @@ a:hover {
 
 nav {
   margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gainsboro;
 }
 
 h1 {
+  font-family: 'Kanit-Medium';
   margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid gainsboro;
+}
+
+#commoners-header {
+  font-family: 'Kanit-SemiBold';
+  text-transform: uppercase;
 }
 
 input,

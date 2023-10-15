@@ -2,19 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
     <link rel="stylesheet" href="/src/frontend/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Solidarity Demo</title>
     <script type="module" src="/src/frontend/main.ts" defer></script>
-    <style>
-      .logo.vite:hover {
-        filter: drop-shadow(0 0 2em #747bff);
-      }
-
-      .logo.typescript:hover {
-        filter: drop-shadow(0 0 2em #2d79c7);
-      }
-    </style>
     <script src="https://unpkg.com/swagger-client"></script>
 
   </head>
@@ -22,6 +14,7 @@
   <body>
       <nav>
         <h1>Solidarity ✊</h1>
+        <small>A <span id="commoners-header">Commoners</span> App</small>
       </nav>
       <main>
         <div id="console">
