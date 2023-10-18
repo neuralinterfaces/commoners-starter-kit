@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
     <link rel="stylesheet" href="/src/frontend/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solidarity Demo</title>
+    <title>Commoners Starter Kit</title>
     <script type="module" src="/src/frontend/main.ts" defer></script>
     <script src="https://unpkg.com/swagger-client"></script>
 
@@ -13,19 +13,20 @@
 
   <body>
       <nav>
-        <h1>Solidarity ✊</h1>
-        <small>A <span id="commoners-header">Commoners</span> App</small>
+        <h1>Commoners Starter Kit</h1>
+        <small>Build Solidarity</small>
       </nav>
       <main>
         <div id="console">
-          <ul id="messages"></ul>
+          <div id="messages"></div>
         </div>
-        <div id="sidebar">
-          <ul id="commands">
-            <li>Connect to Serial Device <button id="testSerialConnection">Run</button></li>
-            <li>Connect to Bluetooth Device <button id="testBluetoothConnection">Run</button></li>
-          </ul>
-        </div>
+        <ul id="commands">
+          <li>Connect to Serial Device <button id="testSerialConnection">Run</button></li>
+          <li>Connect to Bluetooth Device <button id="testBluetoothConnection">Run</button></li>
+        </ul>
       </main>
+      <footer>
+        <small>Built with ✊ by Garrett Flynn</small>
+      </footer>
   </body>
 </html>

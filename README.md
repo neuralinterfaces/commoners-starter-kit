@@ -13,10 +13,10 @@ Related services will be hosted using [Railway](https://railway.app/), where fol
 1. When registering each service, set the `build` command to something useless (e.g. `node -v`) and run only a single service at a time (e.g. `npm run dev --service node`)
 2. For each service, generate a domain in the Networking tab. Paste this into your `commoners.config.ts` file
 
-## Running the Solidarity Demo
+## Running the Application
 To run the Python server, you'll need to create a `conda` environment from the `environment.yml` file.
 
-After this, activate the `solidarity` environment (`conda activate solidarity`).
+After this, activate the `commoners-starter-kit` environment (`conda activate commoners-starter-kit`).
 
 You can then run `npm run dev` to start the development server on your default browser—or `npm start` to begin developing for desktop!
 

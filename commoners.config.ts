@@ -83,9 +83,9 @@ export default defineConfig({
             src: './src/services/python/main.py',
             port: 1234,
             publish: {
-                build: 'python -m PyInstaller --name solidarity --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
+                build: 'python -m PyInstaller --name flask --onedir --clean ./src/services/python/main.py --distpath ./dist/services/python',
                 remote: 'https://python-production-4f11.up.railway.app',
-                local: './dist/services/python/solidarity/solidarity'
+                local: './dist/services/python/flask/flask'
             }
         },
         remote: 'https://jsonplaceholder.typicode.com',

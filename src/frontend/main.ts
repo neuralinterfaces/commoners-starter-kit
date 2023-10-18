@@ -50,7 +50,7 @@ async function createClient(url: string | URL, id = '') {
 const messages = document.getElementById('messages') as HTMLElement
 
 const display = (message: string) => {
-  messages.innerHTML += `<li>${message}</li>`
+  messages.innerHTML += `<div>${message}</div>`
   messages.scrollTop = messages.scrollHeight;
 }
 

@@ -1,10 +1,11 @@
 {
-  "name": "solidarity-demo",
+  "name": "commoners-starter-kit",
   "version": "0.0.0",
   "description": "A template COMMONERS application.",
   "main": "./dist/.commoners/main/index.js",
   "private": true,
   "type": "module",
+  "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/garrettmflynn/commoners-starter-kit.git"

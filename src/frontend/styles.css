@@ -26,37 +26,51 @@
 
 html, body {
   margin: 0;
+  overflow: hidden;
 }
 
 
 body {
-  margin: 0;
-  padding-top: 10vh;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content minmax(0, 1fr) min-content;
   width: 100vw;
   height: 100vh;
 }
 
+nav, footer {
+  background: rgb(239, 239, 239);
+}
+
+nav {
+  padding: 20px 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gainsboro;
+}
+
+footer {
+  padding: 10px 25px;
+  border-top: 1px solid gainsboro;
+}
 
 main {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 20px 50px;
+  padding: 25px 50px;
   flex-wrap: wrap;
   flex-direction: row-reverse;
+  overflow: auto;
 }
 
 main > * {
-  flex-grow: 1
+  flex-grow: 1;
+  height: 100%;
 }
 
 #console {
   width: min-content;
   border-radius: 10px;
   overflow: hidden;
-  height: 100%;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -68,21 +82,23 @@ main > * {
   padding: 10px 15px;
   width: 100%;
   color: white;
-  background: black;
-}
-
-/* Don't break whitespace characters */
-#console li {
-  white-space: pre;
-  padding: 10px 20px;
-  border-bottom: 1px solid gainsboro;
+  background: #0f0f0f;
 }
 
 #messages {
-  max-height: 300px;
+  height: 100%;
+  white-space: pre;
   font-size: 90%;
-  overflow-y: auto;
+  overflow: auto;
 }
+
+/* Don't break whitespace characters */
+#messages > div {
+  padding: 10px 20px;
+  width: 100%;
+  border-bottom: 1px solid gainsboro;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -109,11 +125,6 @@ a:hover {
   color: #535bf2;
 }
 
-nav {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid gainsboro;
-}
 
 h1 {
   font-weight: 900;
@@ -147,10 +158,7 @@ ul {
 
 #commands {
   overflow-y: auto;
-}
-
-#commands h3 {
-  margin-bottom: 0;
+  font-weight: bold;
 }
 
 #commands small {
@@ -213,6 +221,11 @@ button {
     background-color: #2f2f2f;
   }
 
+  nav, footer {
+    background-color: #0f0f0f98;
+    border-color: #555555;
+  }
+
   a:hover {
     color: #24c8db;
   }
@@ -222,7 +235,14 @@ button {
     color: #ffffff;
     background-color: #0f0f0f98;
   }
+
   button:active {
     background-color: #0f0f0f69;
   }
+
+  #console {
+    color: black;
+    background-color: white;
+  }
+
 }
