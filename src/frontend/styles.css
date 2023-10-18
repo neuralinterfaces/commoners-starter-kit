@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Kanit', Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -116,12 +116,12 @@ nav {
 }
 
 h1 {
-  font-family: 'Kanit-Medium';
+  font-weight: 900;
   margin: 0;
 }
 
 #commoners-header {
-  font-family: 'Kanit-SemiBold';
+  font-weight: 700;
   text-transform: uppercase;
 }
 
