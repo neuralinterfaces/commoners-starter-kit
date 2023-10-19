@@ -4,7 +4,7 @@ import {
 } from "@commoners/solidarity";
 
 start('commoners.config.ts', {
-    target: 'mobile',
+    // target: 'mobile',
     // target: 'desktop',
 
     // outDir: './_site_'

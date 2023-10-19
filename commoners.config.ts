@@ -10,6 +10,10 @@ import localServicesPlugin from '@commoners/local-services'
 // import localServicesPlugin from '../commoners/packages/plugins/local-services/index.js'
 // import { defineConfig } from '../commoners/packages/core/index' // NOTE: COMMONERS dependencies are missing in local development...
 
+// ------------- PACKAGE CHANGES -------------
+// "commoners": "file:../commoners/packages/cli",
+
+
 const defineConfig = (o) => o 
 
 export default defineConfig({
