@@ -4,9 +4,8 @@ import {
 } from "@commoners/solidarity";
 
 start('commoners.config.ts', {
-    target: 'desktop',
-    frontend: true,
-    services: ['node', 'python'],
-    // publish: PublishOptions['publish'],
+    target: 'mobile',
+    // target: 'desktop',
+
     // outDir: './_site_'
 })

@@ -4,9 +4,7 @@ import {
 } from "@commoners/solidarity";
 
 build('commoners.config.ts', {
-    target: 'windows',
-    // frontend: true,
-    // services: ['node'],
-    // publish: PublishOptions['publish'],
+    target: 'ios',
+    // publish: true,
     // outDir: './_site_'
 })

@@ -29,12 +29,17 @@ html, body {
   overflow: hidden;
 }
 
+html {
+  height: -webkit-fill-available;
+}
+
 
 body {
   display: grid;
   grid-template-rows: min-content minmax(0, 1fr) min-content;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: -webkit-fill-available;
 }
 
 nav, footer {
@@ -42,13 +47,14 @@ nav, footer {
 }
 
 nav {
-  padding: 20px 25px;
-  padding-bottom: 10px;
+  padding: 50px 25px;
+  padding-bottom: 10px !important;
   border-bottom: 1px solid gainsboro;
 }
 
 footer {
   padding: 10px 25px;
+  padding-bottom: 20px;
   border-top: 1px solid gainsboro;
 }
 
@@ -97,17 +103,6 @@ main > * {
   padding: 10px 20px;
   width: 100%;
   border-bottom: 1px solid gainsboro;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
 }
 
 .row {
@@ -213,6 +208,16 @@ button:active {
 input,
 button {
   outline: none;
+}
+
+@media (min-width:641px) {
+  nav {
+    padding: 20px;
+  }
+
+  footer {
+    padding-bottom: 10px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
