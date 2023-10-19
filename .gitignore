@@ -1,8 +1,14 @@
 .vscode
+
+# Dependencies
 node_modules
+
+# Build Locations
 dist
 build
 ios
 android
+
+# Control Files
 *.log
 *.spec
