@@ -84,30 +84,34 @@ if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
 
 
 // --------- Node Service Test (WebSockets) ---------
-if (COMMONERS.services.node) {
-  const url = new URL(COMMONERS.services.node.url)
+const nodeServices = { LocalNode: COMMONERS.services.localNode, DynamicNode: COMMONERS.services.dynamicNode }
 
-  try {
-    const ws = new WebSocket(`ws://${url.host}`)
+Object.entries(nodeServices).forEach(([label, service]) => {
 
-    ws.onmessage = (o) => {
-      const data = JSON.parse(o.data)
-      onData({source: 'Node', ...data})
+  if (service) {
+    const url = new URL(service.url)
+
+    try {
+      const ws = new WebSocket(`ws://${url.host}`)
+
+      ws.onmessage = (o) => {
+        const data = JSON.parse(o.data)
+        onData({source: label, ...data})
+      }
+
+      let send = (o: any) => {
+        ws.send(JSON.stringify(o))
+      }
+
+      ws.onopen = () => {
+        send({ command: 'platform' })
+        send({ command: 'version' })
+      }
+    } catch (e) {
+      console.error('Failed to connect to Node.js server', e)
     }
-
-    let send = (o: any) => {
-      ws.send(JSON.stringify(o))
-    }
-
-    ws.onopen = () => {
-      send({ command: 'platform' })
-      send({ command: 'version' })
-    }
-  } catch (e) {
-    console.error('Failed to connect to Node.js server', e)
   }
-}
-
+})
 
 // --------- Python Service Test (OpenAPI) ---------
 if (COMMONERS.services.python) {

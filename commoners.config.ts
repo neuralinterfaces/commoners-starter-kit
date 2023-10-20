@@ -64,10 +64,19 @@ export default defineConfig({
     services: {
 
         // Packaged with pkg
-        node: {
+        dynamicNode: {
             description: 'A simple Node.js server',
             src: './src/services/node/index.js',
             publish: 'https://node-production-aa81.up.railway.app/'
+        },
+
+        localNode: {
+            description: 'A local Node.js server',
+            src: './src/services/node/index.js',
+            publish: {
+                build: 'npm run build:node',
+                local: './dist/services/node/index'
+            }
         },
 
         // Packaged with pyinstaller
@@ -81,7 +90,9 @@ export default defineConfig({
                 local: './dist/services/python/flask/flask'
             }
         },
+
         remote: 'https://jsonplaceholder.typicode.com',
+
         dynamic: {
             src: 'http://localhost:1234', // Call the python server in development
             publish: 'https://jsonplaceholder.typicode.com'
