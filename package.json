@@ -42,9 +42,9 @@
     "@capacitor/cli": "^5.3.0",
     "@capacitor/core": "^5.3.0",
     "@capacitor/ios": "^5.3.0",
-    "@commoners/bluetooth": "0.0.25",
-    "@commoners/local-services": "0.0.25",
-    "@commoners/serial": "0.0.25",
+    "@commoners/bluetooth": "0.0.28",
+    "@commoners/local-services": "0.0.28",
+    "@commoners/serial": "0.0.28",
     "commoners": "0.0.28"
   }
 }
