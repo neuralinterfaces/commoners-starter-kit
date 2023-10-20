@@ -1,5 +1,8 @@
 .vscode
 
+# Global Workspace
+.commoners
+
 # Dependencies
 node_modules
 

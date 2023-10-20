@@ -74,9 +74,9 @@ export default defineConfig({
             description: 'A local Node.js server',
             src: './src/services/node/index.js',
             publish: {
-                build: 'npm run build:node',
                 local: './dist/services/node/index'
             }
+            // publish: './dist/services/node/index'
         },
 
         // Packaged with pyinstaller

@@ -45,6 +45,6 @@
     "@commoners/bluetooth": "0.0.28",
     "@commoners/local-services": "0.0.28",
     "@commoners/serial": "0.0.28",
-    "commoners": "0.0.28"
+    "commoners": "file:../commoners/packages/cli"
   }
 }
