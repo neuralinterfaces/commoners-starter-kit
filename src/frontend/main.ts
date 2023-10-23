@@ -74,7 +74,7 @@ if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
 
       fetch(dynamicAPI)
       .then(response => response.json())
-      .then(json => onData({source: `Dynamic = ${COMMONERS.MODE[0].toUpperCase() + COMMONERS.MODE.slice(1)}`, command: 'users', payload: json.length}))
+      .then(json => onData({source: `Dynamic`, command: 'users', payload: json.length}))
       .catch(e => console.error('Failed to request from dynamic server', e))
     })
 

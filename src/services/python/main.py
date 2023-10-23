@@ -33,5 +33,5 @@ def post():
 if __name__ == "__main__":
     env_port = os.getenv('PORT')
     PORT = int(env_port) if env_port else 8080
-    HOST = os.getenv('HOST') or '127.0.0.1'
+    HOST = os.getenv('HOST') or 'localhost'
     app.run(host=HOST, port = PORT)

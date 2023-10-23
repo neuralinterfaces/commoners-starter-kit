@@ -9,8 +9,6 @@
         "ws": "^8.12.0"
     },
     "devDependencies": {
-        "@types/ws": "^8.5.4",
-        "pkg": "^5.8.1",
-        "rollup": "^3.29.3"
+        "@types/ws": "^8.5.4"
     }
 }
