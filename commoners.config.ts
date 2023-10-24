@@ -1,11 +1,11 @@
 // ------------- PRODUCTION -------------
-// import * as bluetoothPlugin from '@commoners/bluetooth'
+import * as bluetoothPlugin from '@commoners/bluetooth'
 import * as serialPlugin from '@commoners/serial'
 import localServicesPlugin from '@commoners/local-services'
 // import { defineConfig } from 'commoners' // NOTE: COMMONERS dependencies are missing in local development...
 
 // // ------------- DEVELOPMENT -------------
-import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
+// import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
 // import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
 // import localServicesPlugin from '../commoners/packages/plugins/local-services/index.js'
 // import { defineConfig } from '../commoners/packages/core/index' // NOTE: COMMONERS dependencies are missing in local development...
@@ -85,9 +85,12 @@ export default defineConfig({
             src: './src/services/python/main.py',
             port: 1234,
             publish: {
-                build: 'python -m PyInstaller --name flask --onedir --clean ./src/services/python/main.py --distpath ./.commoners/services/python',
+                build: 'python -m PyInstaller --name flask --onedir --clean ./src/services/python/main.py --distpath ./build/python',
                 remote: 'https://python-production-4f11.up.railway.app',
-                local: './.commoners/services/python/flask/flask' // Scoped in the services dist folder
+                local: {
+                    src: 'flask',
+                    base: './build/python/flask', // Will be copied
+                }
             }
         },
 

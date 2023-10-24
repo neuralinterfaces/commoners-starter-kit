@@ -3,6 +3,8 @@ import { BleClient } from '@capacitor-community/bluetooth-le';
 
 const list = document.querySelector('#commands') as HTMLUListElement
 
+
+
 async function createClient(url: string | URL, id = '') {
 
   url = new URL('.commoners', url)
@@ -115,6 +117,17 @@ Object.entries(nodeServices).forEach(([label, service]) => {
 
 // --------- Python Service Test (OpenAPI) ---------
 if (COMMONERS.services.python) {
+
+  const service = COMMONERS.services.python
+  if (COMMONERS.TARGET === 'desktop'){
+    let isStarted = false
+    service.onLog(() => {
+      if (!isStarted) {
+        isStarted = true
+        console.warn('Python server activity detected!')
+      }
+    })
+  }
  
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 

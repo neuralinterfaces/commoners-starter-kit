@@ -3,6 +3,9 @@
 # Global Workspace
 .commoners
 
+# Python Service Output
+build
+
 # Dependencies
 node_modules
 
