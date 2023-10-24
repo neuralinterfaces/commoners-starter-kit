@@ -118,25 +118,26 @@ Object.entries(nodeServices).forEach(([label, service]) => {
 // --------- Python Service Test (OpenAPI) ---------
 if (COMMONERS.services.python) {
 
-  const service = COMMONERS.services.python
-  if (COMMONERS.TARGET === 'desktop'){
-    let isStarted = false
-    service.onLog(() => {
-      if (!isStarted) {
-        isStarted = true
-        console.warn('Python server activity detected!')
-      }
-    })
-  }
- 
   const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
 
-  setTimeout(async () => {
+  const runCommands = async () => {
       fetch(new URL('version', pythonUrl))
       .then(res => res.json())
       .then(payload => onData({ source: 'Python', command: 'version', payload }))
       .catch(e => console.error('Failed to request from Python server', e))
-  })
+  }
+
+  const service = COMMONERS.services.python
+  if (COMMONERS.TARGET === 'desktop'){
+    service.onActivityDetected(runCommands)
+
+    service.onClosed(() => {
+      console.error('Python server was closed!')
+    })
+  } 
+  
+  else runCommands()
+ 
 }
 
 
