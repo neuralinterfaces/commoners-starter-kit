@@ -83,7 +83,7 @@ export default defineConfig({
         python: {
             description: 'A simple Python server',
             src: './src/services/python/main.py',
-            port: 1234,
+            port: 1111,
             publish: {
                 build: 'python -m PyInstaller --name flask --onedir --clean ./src/services/python/main.py --distpath ./build/python',
                 remote: 'https://python-production-4f11.up.railway.app',
@@ -97,7 +97,7 @@ export default defineConfig({
         remote: 'https://jsonplaceholder.typicode.com',
 
         dynamic: {
-            src: 'http://localhost:1234', // Call the python server in development
+            src: 'http://localhost:1111', // Call the python server in development
             publish: 'https://jsonplaceholder.typicode.com'
         }
     }
