@@ -4,6 +4,7 @@
   "description": "A template COMMONERS application.",
   "private": true,
   "type": "module",
+  "license": "MIT",
   "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "repository": {
     "type": "git",
