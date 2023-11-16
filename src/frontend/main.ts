@@ -130,11 +130,11 @@ if (commoners.services.python) {
 
   const service = commoners.services.python
   if (commoners.target === 'desktop'){
-    // service.onActivityDetected(runCommands)
+    service.onActivityDetected(runCommands)
 
-    // service.onClosed(() => {
-    //   console.error('Python server was closed!')
-    // })
+    service.onClosed(() => {
+      console.error('Python server was closed!')
+    })
   } 
   
   else runCommands()

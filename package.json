@@ -14,7 +14,7 @@
     "src/**"
   ],
   "scripts": {
-    "start": "commoners --desktop",
+    "start": "commoners --target desktop",
     "dev": "commoners",
     "services": "commoners --services",
     "service:node": "commoners --service node",
@@ -43,6 +43,5 @@
     "@commoners/local-services": "0.0.28",
     "@commoners/serial": "0.0.28",
     "commoners": "file:../commoners/packages/cli"
-  },
-  "main": ".commoners/.temp/main.js"
+  }
 }
