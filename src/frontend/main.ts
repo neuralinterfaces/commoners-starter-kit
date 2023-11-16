@@ -63,9 +63,9 @@ const onData = (data: any) => {
 }
 
 // Remote API Tests (Basic Fetch Commands)
-if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
-    const remoteAPI = new URL('/users', COMMONERS.services.remote.url)
-    const dynamicAPI = new URL('/users', COMMONERS.services.dynamic.url)
+if (commoners.services.remote && commoners.services.dynamic) {
+    const remoteAPI = new URL('/users', commoners.services.remote.url)
+    const dynamicAPI = new URL('/users', commoners.services.dynamic.url)
 
     setTimeout(() => {
 
@@ -86,8 +86,9 @@ if (COMMONERS.services.remote && COMMONERS.services.dynamic) {
 
 
 // --------- Node Service Test (WebSockets) ---------
-const nodeServices = { LocalNode: COMMONERS.services.localNode, DynamicNode: COMMONERS.services.dynamicNode }
+const nodeServices = { LocalNode: commoners.services.localNode, DynamicNode: commoners.services.dynamicNode }
 
+console.log(commoners)
 Object.entries(nodeServices).forEach(([label, service]) => {
 
   if (service) {
@@ -116,9 +117,9 @@ Object.entries(nodeServices).forEach(([label, service]) => {
 })
 
 // --------- Python Service Test (OpenAPI) ---------
-if (COMMONERS.services.python) {
+if (commoners.services.python) {
 
-  const pythonUrl = new URL(COMMONERS.services.python.url) // Equivalent to commoners://python
+  const pythonUrl = new URL(commoners.services.python.url) // Equivalent to commoners://python
 
   const runCommands = async () => {
       fetch(new URL('version', pythonUrl))
@@ -127,13 +128,13 @@ if (COMMONERS.services.python) {
       .catch(e => console.error('Failed to request from Python server', e))
   }
 
-  const service = COMMONERS.services.python
-  if (COMMONERS.TARGET === 'desktop'){
-    service.onActivityDetected(runCommands)
+  const service = commoners.services.python
+  if (commoners.target === 'desktop'){
+    // service.onActivityDetected(runCommands)
 
-    service.onClosed(() => {
-      console.error('Python server was closed!')
-    })
+    // service.onClosed(() => {
+    //   console.error('Python server was closed!')
+    // })
   } 
   
   else runCommands()
@@ -158,7 +159,7 @@ async function requestSerialPort () {
 }
 
 
-COMMONERS.ready.then(plugins => {
+commoners.ready.then(plugins => {
 
   if ('local-services' in plugins) {
 

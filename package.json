@@ -1,7 +1,7 @@
 {
   "name": "commoners-starter-kit",
   "version": "0.0.0",
-  "description": "A template COMMONERS application.",
+  "description": "A template Commoners application.",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -43,5 +43,6 @@
     "@commoners/local-services": "0.0.28",
     "@commoners/serial": "0.0.28",
     "commoners": "file:../commoners/packages/cli"
-  }
+  },
+  "main": ".commoners/.temp/main.js"
 }
