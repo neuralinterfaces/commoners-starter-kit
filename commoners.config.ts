@@ -21,6 +21,7 @@ export default defineConfig({
     // icon: './icon.png', 
 
     electron: {
+        splash: './splash.html',
         window: {
             width: 1000 // Adjust default width
         }
