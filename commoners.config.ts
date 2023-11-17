@@ -24,6 +24,12 @@ export default defineConfig({
         splash: './splash.html',
         window: {
             width: 1000 // Adjust default width
+        },
+
+        build: {
+            mac: {
+                identity: null // Signed builds are breaking on M2
+            }
         }
     },
 
