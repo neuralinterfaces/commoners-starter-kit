@@ -1,13 +1,13 @@
 // ------------- PRODUCTION -------------
-import * as bluetoothPlugin from '@commoners/bluetooth'
-import * as serialPlugin from '@commoners/serial'
-import localServicesPlugin from '@commoners/local-services'
+// import * as bluetoothPlugin from '@commoners/bluetooth'
+// import * as serialPlugin from '@commoners/serial'
+// import localServicesPlugin from '@commoners/local-services'
 // import { defineConfig } from 'commoners' // NOTE: commoners dependencies are missing in local development...
 
 // // ------------- DEVELOPMENT -------------
-// import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
-// import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
-// import localServicesPlugin from '../commoners/packages/plugins/local-services/index.js'
+import * as bluetoothPlugin from '../commoners/packages/plugins/devices/ble/index.js'
+import * as serialPlugin from '../commoners/packages/plugins/devices/serial/index.js'
+import localServicesPlugin from '../commoners/packages/plugins/local-services/index.js'
 // import { defineConfig } from '../commoners/packages/core/index' // NOTE: commoners dependencies are missing in local development...
 
 // ------------- PACKAGE CHANGES -------------
