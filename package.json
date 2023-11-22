@@ -16,13 +16,14 @@
   "scripts": {
     "start": "commoners --target desktop",
     "dev": "commoners",
-    "services": "commoners --services",
-    "service:node": "commoners --service node",
-    "service:python": "commoners --service python",
+    "services": "commoners share",
+    "service:node": "commoners share --service localNode",
+    "service:python": "commoners share --service python",
     "build": "commoners build",
-    "build:frontend": "commoners build --frontend",
-    "build:services": "commoners build --services",
-    "build:node": "cd src/services/node && npm run build",
+    "build:services": "commoners build --target services",
+    "build:desktop": "commoners build --target desktop",
+    "build:mobile": "commoners build --target mobile",
+    "build:node": "commoners build --target services --service localNode",
     "share": "commoners share --service python",
     "launch": "commoners launch",
     "launch:desktop": "commoners launch --desktop",
@@ -42,6 +43,6 @@
     "@commoners/bluetooth": "0.0.31",
     "@commoners/local-services": "0.0.31",
     "@commoners/serial": "0.0.31",
-    "commoners": "0.0.31"
+    "commoners": "0.0.32"
   }
 }
