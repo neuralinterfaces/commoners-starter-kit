@@ -24,28 +24,20 @@ export default defineConfig({
         splash: './splash.html',
         window: {
             width: 1000 // Adjust default width
-        },
-
-        build: {
-            mac: {
-                identity: null // Signed builds are breaking on M2
-            }
         }
     },
 
 
-    plugins: [
-        // autoUpdatePlugin,
-        bluetoothPlugin,
-        serialPlugin,
-        localServicesPlugin((ip, env) => {
+    plugins: {
+        bluetooth: bluetoothPlugin,
+        serial: serialPlugin,
+        localServices: localServicesPlugin((ip, env) => {
             const isLocalIP = ip === 'localhost'
             const hasAuthString = process.env.SHARE_SECRET_KEY === env.SHARE_SECRET_KEY
             return hasAuthString || isLocalIP
         }),
 
-        {
-            name: 'selective-builds',
+        selectiveBuilds:{
             isSupported: {
                 desktop: {
                     load: true
@@ -66,7 +58,7 @@ export default defineConfig({
             render: () => console.log(commoners.target + ' build (render)'),
 
         }
-    ],
+    },
 
     services: {
 

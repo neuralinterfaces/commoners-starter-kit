@@ -161,9 +161,9 @@ async function requestSerialPort () {
 
 commoners.ready.then(plugins => {
 
-  if ('local-services' in plugins) {
+  if ('localServices' in plugins) {
 
-    const localServices = plugins['local-services']
+    const localServices = plugins['localServices']
     const ids: { [x:string]: string }  = {}
 
     localServices.onFound((url) => {
