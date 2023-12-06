@@ -6,6 +6,9 @@
 # Python Service Output
 build
 
+# Custom Build Output
+.site
+
 # Dependencies
 node_modules
 

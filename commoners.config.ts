@@ -72,10 +72,7 @@ export default defineConfig({
         localNode: {
             description: 'A local Node.js server',
             src: './src/services/node/index.js',
-            publish: {
-                local: './dist/services/node/index'
-            }
-            // publish: './dist/services/node/index'
+            publish: true // Any local configuration defaults to this
         },
 
         // Packaged with pyinstaller
