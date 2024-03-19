@@ -86,7 +86,11 @@ if (commoners.services.remote && commoners.services.dynamic) {
 
 
 // --------- Node Service Test (WebSockets) ---------
-const nodeServices = { LocalNode: commoners.services.localNode, DynamicNode: commoners.services.dynamicNode }
+const nodeServices = { 
+  LocalNode: commoners.services.localNode, 
+  DynamicNode: commoners.services.dynamicNode,
+  Typescript: commoners.services.typescript, 
+}
 
 console.log(commoners)
 Object.entries(nodeServices).forEach(([label, service]) => {
@@ -116,31 +120,35 @@ Object.entries(nodeServices).forEach(([label, service]) => {
   }
 })
 
-// --------- Python Service Test (OpenAPI) ---------
-if (commoners.services.python) {
+function runVersionRequest(id: string, label: string = id[0].toUpperCase() + id.slice(1)) {
+  if (commoners.services[id]) {
 
-  const pythonUrl = new URL(commoners.services.python.url) // Equivalent to commoners://python
-
-  const runCommands = async () => {
-      fetch(new URL('version', pythonUrl))
-      .then(res => res.json())
-      .then(payload => onData({ source: 'Python', command: 'version', payload }))
-      .catch(e => console.error('Failed to request from Python server', e))
-  }
-
-  const service = commoners.services.python
-  if (commoners.target === 'desktop'){
-    service.onActivityDetected(runCommands)
-
-    service.onClosed(() => {
-      console.error('Python server was closed!')
-    })
-  } 
+    const url = new URL(commoners.services[id].url) // Equivalent to commoners://python
   
-  else runCommands()
- 
+    const runCommands = async () => {
+        fetch(new URL('version', url))
+        .then(res => res.json())
+        .then(payload => onData({ source: label, command: 'version', payload }))
+        .catch(e => console.error(`Failed to request from ${label} server`, e))
+    }
+  
+    const service = commoners.services[id]
+    if (commoners.target === 'desktop'){
+      service.onActivityDetected(runCommands)
+      service.onClosed(() => console.error(`${label} server was closed!`))
+    } 
+    
+    else runCommands()
+   
+  }
 }
 
+// --------- Python Service Test (OpenAPI) ---------
+runVersionRequest('python')
+
+
+// --------- C++ Service Test ---------
+runVersionRequest('cpp', 'C++')
 
 
 // --------- Web Serial Test ---------

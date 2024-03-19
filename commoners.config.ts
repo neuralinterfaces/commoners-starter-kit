@@ -75,6 +75,17 @@ export default defineConfig({
             publish: true // Any local configuration defaults to this
         },
 
+        typescript: {
+            description: 'A local TypeScript server',
+            src: './src/services/typescript/index.ts',
+        },
+
+        // cpp: {
+        //     description: 'A local C++ server',
+        //     src: './src/services/cpp/server.cpp',
+        //     build: 'g++ {src} -o {out} -std=c++11' // NOTE: Document the format...
+        // },
+
         // Packaged with pyinstaller
         python: {
             description: 'A simple Python server',

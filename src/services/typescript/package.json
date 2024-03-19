@@ -1,0 +1,11 @@
+{
+    "name": "@commoners/typescript-demo",
+    "version": "1.0.0",
+    "type": "module",
+    "dependencies": {
+        "ws": "^8.12.0"
+    },
+    "devDependencies": {
+        "@types/ws": "^8.5.4"
+    }
+}
