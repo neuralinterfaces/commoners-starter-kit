@@ -63,24 +63,24 @@ const onData = (data: any) => {
 }
 
 // Remote API Tests (Basic Fetch Commands)
-if (commoners.services.remote && commoners.services.dynamic) {
-    const remoteAPI = new URL('/users', commoners.services.remote.url)
-    const dynamicAPI = new URL('/users', commoners.services.dynamic.url)
+const remoteAPIs = {
+  'Remote': commoners.services.remote,
+  'Dynamic': commoners.services.dynamic
+}
+
+
+Object.entries(remoteAPIs).forEach(([label, service]) => {
+    if (!service) return console.error(`Service ${label} is not available`)
+    const url = new URL('/users', service.url)
 
     setTimeout(() => {
-
-      fetch(remoteAPI)
+      fetch(url)
       .then(response => response.json())
-      .then(json => onData({source: 'Remote', command: 'users', payload: json.length}))
+      .then(json => onData({source: label, command: 'users', payload: json.length}))
       .catch(e => console.error('Failed to request from remote server', e))
-
-      fetch(dynamicAPI)
-      .then(response => response.json())
-      .then(json => onData({source: `Dynamic`, command: 'users', payload: json.length}))
-      .catch(e => console.error('Failed to request from dynamic server', e))
     })
 
-} 
+})
 
 
 

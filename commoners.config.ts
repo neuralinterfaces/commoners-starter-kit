@@ -66,7 +66,7 @@ export default defineConfig({
         dynamicNode: {
             description: 'A simple Node.js server',
             src: './src/services/node/index.js',
-            publish: 'https://node-production-aa81.up.railway.app/'
+            publish: 'https://node-production-aa81.up.railway.app/' // NOTE: Currently down...
         },
 
         localNode: {
@@ -79,12 +79,6 @@ export default defineConfig({
             description: 'A local TypeScript server',
             src: './src/services/typescript/index.ts',
         },
-
-        // cpp: {
-        //     description: 'A local C++ server',
-        //     src: './src/services/cpp/server.cpp',
-        //     build: 'g++ {src} -o {out} -std=c++11' // NOTE: Document the format...
-        // },
 
         // Packaged with pyinstaller
         python: {
@@ -101,7 +95,15 @@ export default defineConfig({
             }
         },
 
-        remote: 'https://jsonplaceholder.typicode.com',
+        // // BREAKS
+        // cpp: {
+        //     description: 'A local C++ server',
+        //     src: './src/services/cpp/server.cpp',
+        //     build: 'g++ {src} -o {out} -std=c++11' // NOTE: Document the format...
+        // },
+
+        // // BREAKS
+        // remote: 'https://jsonplaceholder.typicode.com',
 
         dynamic: {
             src: 'http://localhost:1111', // Call the python server in development
