@@ -69,10 +69,22 @@ export default defineConfig({
             publish: 'https://node-production-aa81.up.railway.app/'
         },
 
+        devNode: {
+            description: 'A development Node.js server',
+            src: './src/services/node/index.js',
+            publish: false // NOTE: Must try sending messages and checking
+        },
+
         localNode: {
             description: 'A local Node.js server',
             src: './src/services/node/index.js',
-            publish: true // Any local configuration defaults to this
+            publish: true
+            
+            // {
+            //     // local: true,
+            //     // local: './dist/services/node/index', // NOTE: This actually doesn't change the output location...
+            //     remote: false // Must include to remove auto-built service from remote 
+            // }
         },
 
         // Packaged with pyinstaller
