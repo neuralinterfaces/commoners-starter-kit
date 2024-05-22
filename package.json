@@ -8,7 +8,7 @@
   "author": "Garrett Flynn <garrettmflynn@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/garrettmflynn/commoners-starter-kit.git"
+    "url": "https://github.com/neuralinterfaces/commoners-starter-kit.git"
   },
   "workspaces": [
     "src/**"
