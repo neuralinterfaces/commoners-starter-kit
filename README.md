@@ -1,10 +1,7 @@
 # commoners-starter-kit
-A cross-platform app built using [`commoners`](commoners.dev).
+A cross-platform app for testing the [`commoners`](commoners.dev) build tool.
 
-## Overview
-This repository is configured to automatically build and distribute the application and its related services when new changes are pushed to `main`.
-
-### Distribution Formats
+When new changes are pushed to `main`, this application will automatically be built and distributed in the following formats:
 - [x] Web — Progressive Web App (PWA)
 - [x] Mac
 - [x] Windows
@@ -12,9 +9,7 @@ This repository is configured to automatically build and distribute the applicat
 - [ ] iOS
 - [ ] Android
 
-<!-- The TypeScript service is hosted using [Railway](https://railway.app/), where following considerations apply:
-
-> **Note:** As of November 2023, choosing your [build providers](https://docs.railway.app/deploy/builds#build-providers) is a [Priority Boarding](https://docs.railway.app/reference/priority-boarding) feature, where you'll have to link your Discord account to support this.
-
-1. When registering each service, set the `build` command to something useless (e.g. `node -v`) and run only a single service at a time (e.g. `npm run build -- --service service && npm run launch -- --service service`).
-2. For each service, generate a domain in the Networking tab. Paste this into the `commoners.config.ts` file -->
+If you'd like to host the services remotely (e.g. on [Railway](https://railway.app/)), please consider the following:
+1. You will want to build services using the `commoners build --service tsNode` syntax
+2. The build artifacts can be launched using `commoners launch --service tsNode`
+3. Paste any generated URLs into the `commoners.config.ts` file in the services `publish.remote` field.

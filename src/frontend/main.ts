@@ -8,8 +8,6 @@ const display = (message: string) => {
   messages.scrollTop = messages.scrollHeight;
 }
 
-const serviceURL = new URL('connected', SERVICES.service.url)
-
 const status: {
   connected: boolean | null
 } = {
@@ -17,7 +15,7 @@ const status: {
 }
 
 const poll = () => {
-  fetch(serviceURL).then((res) => {
+  fetch(SERVICES.tsNode.url).then((res) => {
 
     if (res.ok) {
       if (!status.connected) display('Application is connected to service')
