@@ -21,19 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: commoners-starter-kit
-          environment-file: environment.yml
-          auto-activate-base: false
-
       - uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
