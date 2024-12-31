@@ -1,28 +1,16 @@
 {
   "name": "commoners-starter-kit",
-  "version": "0.0.54",
-  "description": "A template Commoners application.",
+  "version": "0.0.0",
   "private": true,
-  "license": "MIT",
-  "author": "Garrett Flynn <garrettmflynn@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/neuralinterfaces/commoners-starter-kit.git"
-  },
+  "type": "module",
   "scripts": {
-    "start": "commoners --target desktop",
-    "dev": "commoners",
+    "start": "commoners",
     "build": "commoners build",
-    "launch": "commoners launch",
-    "build:service": "commoners build --service tsNode",
-    "launch:service": "commoners launch --service tsNode"
+    "launch": "commoners launch"
   },
   "devDependencies": {
-    "@capacitor/android": "^5.5.0",
-    "@capacitor/assets": "^2.0.4",
-    "@capacitor/cli": "^5.3.0",
-    "@capacitor/core": "^5.3.0",
-    "@capacitor/ios": "^5.3.0",
-    "commoners": "0.0.54"
+    "commoners": "^0.0.59",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5"
   }
 }
