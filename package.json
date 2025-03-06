@@ -14,7 +14,7 @@
     "@capacitor/cli": "^6.2.0",
     "@capacitor/core": "^6.2.0",
     "@capacitor/ios": "^6.2.0",
-    "commoners": "^0.0.59",
+    "commoners": "^0.0.60-alpha.3",
     "typescript": "~5.6.2",
     "vite": "^6.0.5"
   }
